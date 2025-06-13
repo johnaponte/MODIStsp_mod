@@ -190,8 +190,8 @@ MODIStsp_read_xml <- function(prodopts_file,
   }  #End Cycle on products
 
   # Add attributes to these 3 lists (this is used as a check when charging them)
-  attr(prod_opt_list, "GeneratedBy")     <- "MODIStsp"
-  attr(prod_opt_list, "MODIStspVersion") <- packageVersion("MODIStsp")
+  attr(prod_opt_list, "GeneratedBy")     <- "MODIStsp.mod"
+  attr(prod_opt_list, "MODIStspVersion") <- packageVersion("MODIStsp.mod")
 
   # Save the products list and the chars of the products in previous file
   dir.create(dirname(prodopts_file), recursive = TRUE, showWarnings = FALSE)

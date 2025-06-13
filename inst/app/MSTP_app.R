@@ -15,7 +15,7 @@ MSTP_ui <- shinydashboard::dashboardPage(
     shiny::tags$li(class = "dropdown", shiny::tags$h3(
       style = "color:white;margin:0;padding-top:15px;padding-bottom:15px;padding-left:10px;padding-right:20px;
       font-style:italic",
-      paste0("MODIStsp v.", packageVersion("MODIStsp"))
+      paste0("MODIStsp v.", packageVersion("MODIStsp.mod"))
     )),
     shiny::tags$li(class ="dropdown", shiny::tags$a(
       href="https://docs.ropensci.org/MODIStsp/",

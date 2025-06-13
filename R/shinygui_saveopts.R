@@ -136,7 +136,7 @@ shinygui_saveopts <- function(input, prod_opt_list, rv) {
       }
     }
   }
-  opts$MODIStspVersion <- as.character(packageVersion("MODIStsp"))
+  opts$MODIStspVersion <- as.character(packageVersion("MODIStsp.mod"))
   return(opts)
   #nocov end
 }
