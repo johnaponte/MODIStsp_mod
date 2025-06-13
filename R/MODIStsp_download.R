@@ -15,8 +15,8 @@
 #' @param use_aria `logical` if TRUE, download using aria2c
 #' @param year `character` Acquisition year of the images to be downloaded
 #' @param DOY `character array` Acquisition doys of the images to be downloaded
-#' @param user `character` Username for http download
-#' @param password `character` Password for http download
+#' @param user `character` Username for http download. Not used as BASIC authentication does not work
+#' @param password `character` Password for http download Not used as BASIC authentication does not work
 #' @param sens_sel `character ["terra" | "aqua"]` Selected sensor.
 #' @param date_name `character` Date of acquisition of the images to be downloaded.
 #' @param gui `logical` Indicates if on an interactive or non-interactive execution
@@ -26,8 +26,8 @@
 #' @rdname MODIStsp_download
 #' @author Lorenzo Busetto, phD (2014-2017)
 #' @author Luigi Ranghetti, phD (2015)
-#' @importFrom httr RETRY authenticate content GET write_disk
-#' @importFrom xml2 as_list
+#' @importFrom curl curl curl_download curl_fetch_disk new_handle
+#' @importFrom xml2 as_list read_xml
 
 MODIStsp_download <- function(modislist,
                               out_folder_mod,
@@ -44,6 +44,11 @@ MODIStsp_download <- function(modislist,
                               date_name,
                               gui,
                               verbose) {
+
+  # Check for .netrc file existence
+  if (!file.exists("~/.netrc")) {
+    stop("BASIC authentication does not work. Create a .netrc file. See https://urs.earthdata.nasa.gov/documentation for details.")
+  }
 
   # Cycle on the different files to download for the current date
   for (file in seq_along(modislist)) {
@@ -71,25 +76,22 @@ MODIStsp_download <- function(modislist,
     if (download_server == "http") {
       while (success == FALSE) {
 
-        size_string <- httr::RETRY("GET",
-                                   paste0(remote_filename, ".xml"),
-                                   httr::authenticate(user, password, type = "any"),
-                                   times = n_retries,
-                                   pause_base = 0.1,
-                                   pause_cap = 10,
-                                   quiet = verbose)
+        xml_url <- paste0(remote_filename, ".xml")
+        xml_tempfile <- tempfile(fileext = ".xml")
+        try({
+          curl::curl_download(url = xml_url, destfile = xml_tempfile, handle = curl::new_handle(netrc = 1))
+          size_string <- xml2::read_xml(xml_tempfile)
+        }, silent = TRUE)
 
         # if user/password are not valid, notify
-        if (size_string["status_code"] == 401) {
+        if (inherits(size_string, "try-error") || is.null(size_string)) {
           stop("Username and/or password are not valid. Please provide
              valid ones!")
         }
 
-        if (size_string$status_code == 200) {
+        if (!is.null(size_string)) {
           remote_filesize <- as.integer(
-            xml2::as_list(
-              httr::content(
-                size_string, encoding = "UTF-8"))[["GranuleMetaDataFile"]][["GranuleURMetaData"]][["DataFiles"]][["DataFileContainer"]][["FileSize"]] #nolint
+            xml2::as_list(size_string)[["GranuleMetaDataFile"]][["GranuleURMetaData"]][["DataFiles"]][["DataFileContainer"]][["FileSize"]] #nolint
           )
           success <- TRUE
         } else {
@@ -140,12 +142,14 @@ MODIStsp_download <- function(modislist,
             download <- try(system(aria_string,
                                    intern = Sys.info()["sysname"] == "Windows"))
           } else {
-            # http download - httr
-            download <- try(httr::GET(remote_filename,
-                                      httr::authenticate(user, password, type = "any"),
-                                      # httr::progress(),
-                                      httr::write_disk(local_filename,
-                                                       overwrite = TRUE)))
+            # http download - curl with .netrc authentication
+            handle <- curl::new_handle(netrc = 1)
+            download <- try(curl::curl_fetch_disk(url = remote_filename, path = local_filename, handle = handle))
+            # download <- try(httr::GET(remote_filename,
+            #                           httr::authenticate(user, password, type = "any"),
+            #                           # httr::progress(),
+            #                           httr::write_disk(local_filename,
+            #                                            overwrite = TRUE)))
           }
         }
 
@@ -159,10 +163,7 @@ MODIStsp_download <- function(modislist,
         } else {
           if (download_server == "http" & use_aria == FALSE) {
 
-            if (download$status_code != 200 &
-                length(httr::content(download,
-                                     "text",
-                                     encoding = "UTF-8")) == 1) {
+            if (download$status_code != 200 || file.size(local_filename) == 0) {
               # on error, delete last HDF file (to be sure no incomplete
               # files are left behind and send message)
               if (verbose) {

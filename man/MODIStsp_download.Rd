@@ -46,9 +46,9 @@ of http download to generate the download addresses).}
 
 \item{DOY}{\verb{character array} Acquisition doys of the images to be downloaded}
 
-\item{user}{\code{character} Username for http download}
+\item{user}{\code{character} Username for http download. Not used as BASIC authentication does not work}
 
-\item{password}{\code{character} Password for http download}
+\item{password}{\code{character} Password for http download Not used as BASIC authentication does not work}
 
 \item{sens_sel}{\code{character ["terra" | "aqua"]} Selected sensor.}
 

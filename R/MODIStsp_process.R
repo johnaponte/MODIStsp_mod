@@ -311,10 +311,8 @@ MODIStsp_process <- function(proc_opts,
 
         for (date in seq_along(date_dirs)) {
           #Create the date string
-          date_name <- sub(sub(
-            pattern = "\\.", replacement = "_", date_dirs[date]),
-            pattern = "\\.", replacement = "_", date_dirs[date]
-          )
+          date_name <- gsub(pattern = "\\.", replacement = "_", date_dirs[date])
+
           # transform date to year
           year      <- strftime(as.Date(date_name, "%Y_%m_%d" ), format = "%Y")
           # transform date to DOY

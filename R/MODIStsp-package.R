@@ -1,5 +1,5 @@
-#' MODIStsp: a package to automatize the creation of time series of raster
-#'  images derived from MODIS Land Products
+#' MODIStsp.mod: a package to automatize the creation of time series of raster
+#'  images derived from MODIS Land Products (modified)
 #'
 #' MODIStsp allows automating the creation of time series of rasters derived
 #' from MODIS Satellite Land Products data. It performs several typical
@@ -18,7 +18,7 @@
 #' related to a MODIS product whenever a new image is available.
 #'
 #' @docType package
-#' @name MODIStsp-package
+#' @name MODIStsp.mod-package
 #' @author Lorenzo Busetto, phD (2014-2017)
 #' @author Luigi Ranghetti, phD (2015-2017)
 #' @seealso [https://docs.ropensci.org/MODIStsp/](https://docs.ropensci.org/MODIStsp/)
