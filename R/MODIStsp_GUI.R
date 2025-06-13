@@ -13,7 +13,7 @@
 MODIStsp_GUI <- function() {
 
   #nocov start
-  file_path <- system.file("app/MSTP_app.R", package = "MODIStsp")
+  file_path <- system.file("app/MSTP_app.R", package = "MODIStsp.mod")
   if (!nzchar(file_path)) stop("Shiny app not found")
   MSTP_ui <- MSTP_server <- NULL # avoid NOTE about undefined globals
   source(file_path, local = TRUE)

@@ -253,12 +253,12 @@ Busetto and Ranghetti (2016) <doi:10.1016/j.cageo.2016.08.020>
 > Please either omit these examples or export these functions.
 > Used ::: in documentation:
 >       man/split_nodata_values.Rd:
->          MODIStsp:::split_nodata_values(c("255", "250,254:255"))
+>          MODIStsp.mod:::split_nodata_values(c("255", "250,254:255"))
 >       man/split_nodata_values.Rd:
->          MODIStsp:::split_nodata_values(c("255", "250,254:255"),
+>          MODIStsp.mod:::split_nodata_values(c("255", "250,254:255"),
 > take_all = FALSE)
 >       man/split_nodata_values.Rd:
->          MODIStsp:::create_nodata_rcl(c("255", "250,254:255"), c("255",
+>          MODIStsp.mod:::create_nodata_rcl(c("255", "250,254:255"), c("255",
 > "255"))
 
 Examples of unexported functions were removed.

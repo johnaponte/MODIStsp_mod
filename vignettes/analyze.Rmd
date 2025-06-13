@@ -14,7 +14,7 @@ library(sf)
 library(MODIStsp)
 library(dplyr)
 test_zip <-  system.file("testdata/VI_16Days_500m_v6/NDVI.zip",
-                         package = "MODIStsp")
+                         package = "MODIStsp.mod")
 dir.create(file.path(tempdir(), "MODIStsp/VI_16Days_500m_v61"),
            showWarnings = FALSE, recursive = TRUE)
 utils::unzip(test_zip, 
@@ -33,7 +33,7 @@ To test this functionality, you can run the following example:
 
 ```{r eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(MODIStsp)
-opts_file <- system.file("testdata/test_extract.json", package = "MODIStsp")
+opts_file <- system.file("testdata/test_extract.json", package = "MODIStsp.mod")
 MODIStsp(opts_file = opts_file, gui = FALSE, verbose = FALSE)
 ```
 
@@ -145,7 +145,7 @@ function as follows:
 # the testdata folder of MODIStsp.
 
 polygons <- sf::st_read(system.file("testdata/extract_polys.shp",
-                                       package = "MODIStsp"),
+                                       package = "MODIStsp.mod"),
                            quiet = TRUE)
 polygons
 

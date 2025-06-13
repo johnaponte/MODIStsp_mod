@@ -6,7 +6,7 @@ test_that("MODIStsp_readxml works as expected", {
   tmpfile <- tempfile(fileext = ".RData")
   # read the xml file of products options
   MODIStsp_read_xml(tmpfile, system.file("ExtData", "MODIStsp_ProdOpts.xml.zip",
-                                        package = "MODIStsp"))
+                                        package = "MODIStsp.mod"))
   # load the saved opts file
   opts <- get(load(tmpfile))
 

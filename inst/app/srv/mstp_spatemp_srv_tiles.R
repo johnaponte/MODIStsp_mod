@@ -3,7 +3,7 @@
 
 
 rv$tilemap <- get(load(system.file("ExtData" ,"MODIS_Tiles_latlon.RData",
-                                   package = "MODIStsp")))
+                                   package = "MODIStsp.mod")))
 
 # Selection from map ----
 observeEvent(input$tilemap, ignoreNULL = FALSE, ignoreInit = TRUE,{

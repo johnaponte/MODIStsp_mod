@@ -26,7 +26,7 @@ License: GPL 3.0
 # Add a custom index for testing purposes
 library(jsonlite)
 opts_jsfile = system.file("testdata/test_addindex.json",
-                             package = "MODIStsp")
+                             package = "MODIStsp.mod")
  MODIStsp_addindex(
    opts_jsfile = opts_jsfile,
    gui = FALSE,

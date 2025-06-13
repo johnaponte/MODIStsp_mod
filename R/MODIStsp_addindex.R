@@ -52,7 +52,7 @@ MODIStsp_addindex <- function(
 
   indexes_file <- (system.file("ExtData",
                                "MODIStsp_indexes.json",
-                               package = "MODIStsp"))
+                               package = "MODIStsp.mod"))
 
   # Restore MODIS products if existing, otherwise retrieve  from xml file ----
   prod_opt_list <- load_prodopts()
@@ -123,7 +123,7 @@ save_formula <- function(refbands_names,
 
   indexes_file <- system.file("ExtData",
                               "MODIStsp_indexes.json",
-                              package = "MODIStsp")
+                              package = "MODIStsp.mod")
 
   if (file.exists(indexes_file)) {
     custom_indexes <- jsonlite::read_json(indexes_file)

@@ -47,6 +47,8 @@ Description: Allows automating the creation of time series of rasters derived
     Busetto and Ranghetti (2016). See: https://doi.org/10.1016/j.cageo.2016.08.020
     This package is modified to use curl with .ntcr file instead of
     httr as MODIS no longer supports basic authentication.
+    See: https://everything.curl.dev/usingcurl/netrc.html on information on 
+    how to setup .ntrc file for machine urs.earthdata.nasa.gov.
 License: GPL-3
 Depends:
     R (>= 3.5.0)

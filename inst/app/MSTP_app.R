@@ -90,11 +90,11 @@ MSTP_ui <- shinydashboard::dashboardPage(
     # tags$script(HTML("$('body').addClass('sidebar-mini');")),
     shinydashboard::tabItems(
 
-      source(system.file("app/ui/mstp_prds_ui.R", package = "MODIStsp"),
+      source(system.file("app/ui/mstp_prds_ui.R", package = "MODIStsp.mod"),
              local = TRUE)$value,
-      source(system.file("app/ui/mstp_spatemp_ui.R", package = "MODIStsp"),
+      source(system.file("app/ui/mstp_spatemp_ui.R", package = "MODIStsp.mod"),
              local = TRUE)$value,
-      source(system.file("app/ui/mstp_other_ui.R", package = "MODIStsp"),
+      source(system.file("app/ui/mstp_other_ui.R", package = "MODIStsp.mod"),
              local = TRUE)$value
       #
       # source("ui/cl_s2_ui.R", local = TRUE)$value,
@@ -113,25 +113,25 @@ MSTP_server <- shiny::shinyServer(function(input, output, session) {
   #   ____________________________________________________________________________
   #   Source all main server scripts                                          ####
 
-  source(system.file("app/srv/mstp_prds_srv.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_prds_srv.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_opts_srv.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_opts_srv.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_spatemp_srv_tiles.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_spatemp_srv_tiles.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_spatemp_srv_bbox.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_spatemp_srv_bbox.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_spatemp_srv_file.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_spatemp_srv_file.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_spatemp_srv_draw.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_spatemp_srv_draw.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_spatemp_srv_proj.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_spatemp_srv_proj.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_save_srv.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_save_srv.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_load_srv.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_load_srv.R", package = "MODIStsp.mod"),
          local = TRUE)$value
-  source(system.file("app/srv/mstp_helpmess_srv.R", package = "MODIStsp"),
+  source(system.file("app/srv/mstp_helpmess_srv.R", package = "MODIStsp.mod"),
          local = TRUE)$value
 
 

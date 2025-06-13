@@ -69,7 +69,7 @@ MODIStsp_get_prodlayers <- function(prodname, prodver = "061") {
   indexes_fullnames <- selprod[["indexes_fullnames"]]
 
   cust_ind      <- jsonlite::read_json(system.file("ExtData", "MODIStsp_indexes.json",
-                                                   package = "MODIStsp"))
+                                                   package = "MODIStsp.mod"))
 
   if (length(cust_ind) == 1) {
     cust_ind <- NULL

@@ -278,7 +278,7 @@ if (is_hdf4_supported) {
 # downloads and processed 3 MOD13A2 images over the Como Lake (Lombardy, Italy)
 # and retrieves NDVI and EVI data, plus the Usefulness Index Quality Indicator.
 
-opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
+opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
 
 if (is_hdf4_supported) {
   MODIStsp(gui = FALSE, opts_file = opts_file, verbose = TRUE, parallel = FALSE)
@@ -289,8 +289,8 @@ if (is_hdf4_supported) {
 # and specifying the extent from a spatial file allows to re-use the same
 # processing settings to perform download and reprocessing on a different area
 
-opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
-spatial_file <- system.file("testdata/lakeshapes/garda_lake.shp", package = "MODIStsp")
+opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
+spatial_file <- system.file("testdata/lakeshapes/garda_lake.shp", package = "MODIStsp.mod")
 if (is_hdf4_supported) {
   MODIStsp(
     gui = FALSE,
@@ -310,12 +310,12 @@ if (is_hdf4_supported) {
 # create the extent list using for example.
 
 extent_list = list.files(
-  system.file("testdata/lakeshapes/", package = "MODIStsp"),
+  system.file("testdata/lakeshapes/", package = "MODIStsp.mod"),
   "\\\\.shp$",
   full.names = TRUE
 )
 extent_list
-opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
+opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
 
 if (is_hdf4_supported) {
   for (single_shape in extent_list) {

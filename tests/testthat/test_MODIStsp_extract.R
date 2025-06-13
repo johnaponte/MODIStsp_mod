@@ -16,7 +16,7 @@ test_that("MODIStsp_extract works as expected", {
       # creating files outside tempdir while running the test
       #
       test_zip <-  system.file("testdata/VI_16Days_500m_v6/NDVI.zip",
-                                  package = "MODIStsp")
+                                  package = "MODIStsp.mod")
       dir.create(file.path(tempdir(), "MODIStsp/VI_16Days_500m_v61"),
                  showWarnings = FALSE, recursive = TRUE)
       utils::unzip(test_zip,
@@ -25,7 +25,7 @@ test_that("MODIStsp_extract works as expected", {
       # build and load the MODIStsp stack
 
       opts_file <- system.file("testdata/test_extract.json",
-                               package = "MODIStsp")
+                               package = "MODIStsp.mod")
       MODIStsp(opts_file = opts_file, gui = FALSE)
       stack_file  <- list.files(
         file.path(tempdir(),
@@ -37,7 +37,7 @@ test_that("MODIStsp_extract works as expected", {
       # extract data - average values over polygons
 
       polygons <- sf::st_read(system.file("testdata/extract_polys.shp",
-                                             package = "MODIStsp"),
+                                             package = "MODIStsp.mod"),
                                  quiet = TRUE)
       expect_warning(out_data <- MODIStsp_extract(ts_data, polygons,
                                                   id_field = "lc_type",

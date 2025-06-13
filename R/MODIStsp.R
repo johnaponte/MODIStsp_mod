@@ -193,7 +193,7 @@
 #' # downloads and processed 3 MOD13A2 images over the Como Lake (Lombardy, Italy)
 #' # and retrieves NDVI and EVI data, plus the Usefulness Index Quality Indicator.
 #'
-#' opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
+#' opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
 #'
 #' if (is_hdf4_supported) {
 #'   MODIStsp(gui = FALSE, opts_file = opts_file, verbose = TRUE, parallel = FALSE)
@@ -204,8 +204,8 @@
 #' # and specifying the extent from a spatial file allows to re-use the same
 #' # processing settings to perform download and reprocessing on a different area
 #'
-#' opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
-#' spatial_file <- system.file("testdata/lakeshapes/garda_lake.shp", package = "MODIStsp")
+#' opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
+#' spatial_file <- system.file("testdata/lakeshapes/garda_lake.shp", package = "MODIStsp.mod")
 #' if (is_hdf4_supported) {
 #'   MODIStsp(
 #'     gui = FALSE,
@@ -225,12 +225,12 @@
 #' # create the extent list using for example.
 #'
 #' extent_list = list.files(
-#'   system.file("testdata/lakeshapes/", package = "MODIStsp"),
+#'   system.file("testdata/lakeshapes/", package = "MODIStsp.mod"),
 #'   "\\.shp$",
 #'   full.names = TRUE
 #' )
 #' extent_list
-#' opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
+#' opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
 #'
 #' if (is_hdf4_supported) {
 #'   for (single_shape in extent_list) {
@@ -343,7 +343,7 @@ MODIStsp <- function(...,
     message("MODIStsp is running in test mode.")
     # read names of available json test files
     test_files <- sort(list.files(
-      path       = system.file("testdata", package = "MODIStsp"),
+      path       = system.file("testdata", package = "MODIStsp.mod"),
       pattern    = "^test[0-9]{2}[a-zA-Z]?\\.json$",
       full.names = TRUE))
 
@@ -361,7 +361,7 @@ MODIStsp <- function(...,
     #nocov end
     # check that the offline HDF files were unzipped - unzip them if not
     tests_hdf_zipped <- list.files(
-      path       = system.file("testdata", package = "MODIStsp"),
+      path       = system.file("testdata", package = "MODIStsp.mod"),
       pattern    = "\\.hdf\\.zip$",
       full.names = TRUE
     )
@@ -378,7 +378,7 @@ MODIStsp <- function(...,
     # Assign the selected test Option File
 
     opts_file <- list.files(
-      path       = system.file("testdata", package = "MODIStsp"),
+      path       = system.file("testdata", package = "MODIStsp.mod"),
       pattern    = cur_test,
       full.names = TRUE)
   }
@@ -450,7 +450,7 @@ MODIStsp <- function(...,
       # in the initialization of the function!
       proc_opts <- jsonlite::read_json(system.file("ExtData",
                                                    "mstp_defaults.json",
-                                                   package = "MODIStsp"))
+                                                   package = "MODIStsp.mod"))
     }
 
     # update proc_opts based on arguments passed to the function ----

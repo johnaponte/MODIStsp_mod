@@ -123,13 +123,13 @@ License: GPL 3.0
 # installation folder to tempdir and use it to create a test time series.
 
 test_zip <-  system.file("testdata/VI_16Days_500m_v6/NDVI.zip",
-                         package = "MODIStsp")
+                         package = "MODIStsp.mod")
 dir.create(file.path(tempdir(), "MODIStsp/VI_16Days_500m_v61"),
            showWarnings = FALSE, recursive = TRUE)
 utils::unzip(test_zip,
              exdir = file.path(tempdir(), "MODIStsp/VI_16Days_500m_v61"))
 
-opts_file <- system.file("testdata/test_extract.json", package = "MODIStsp")
+opts_file <- system.file("testdata/test_extract.json", package = "MODIStsp.mod")
 MODIStsp(opts_file = opts_file, gui = FALSE, verbose = FALSE)
 
 # Now load the MODIStsp stack: This is a MODIS NDVI time series ranging between
@@ -150,7 +150,7 @@ ts_data
 # Now load a shapefile containing polygons from which we want to extract data
 
 polygons <- sf::st_read(system.file("testdata/extract_polys.shp",
-                           package = "MODIStsp"), quiet = TRUE)
+                           package = "MODIStsp.mod"), quiet = TRUE)
 polygons
 
 # Finally, extract the average values for each polygon and date and plot the

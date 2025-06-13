@@ -18,7 +18,7 @@ tiles_from_bbox <- function(bbox, outproj) {
 
   modis_grid <- get(load(
     system.file(
-      "ExtData/MODIS_Tiles.RData", package = "MODIStsp")))
+      "ExtData/MODIS_Tiles.RData", package = "MODIStsp.mod")))
 
   d_bbox_mod_tiled     <- suppressWarnings(sf::st_crop(modis_grid,
                                                        xmin = bbox_mod[1],

@@ -14,7 +14,7 @@ test_that(
     # provided options file is not a MODIStsp json options file
     expect_error(MODIStsp(
       opts_file = system.file("ExtData", "MODIStsp_ProdOpts.xml.zip",
-                                 package = "MODIStsp"),
+                                 package = "MODIStsp.mod"),
       gui = FALSE), "Unable to read the provided options")
 
     # # Credentials for earthdata login for http download are wrong
@@ -22,6 +22,6 @@ test_that(
     # # even without autentication
     # expect_error(MODIStsp(
     #   opts_file = system.file("testdata/test05a.json",
-    #                              package = "MODIStsp"), over,
+    #                              package = "MODIStsp.mod"), over,
     #   gui = FALSE, n_retries = 2), "Username and/or password are not valid")
   })

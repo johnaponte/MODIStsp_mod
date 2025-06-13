@@ -19,7 +19,7 @@
 #' # Add a custom index for testing purposes
 #' library(jsonlite)
 #' opts_jsfile = system.file("testdata/test_addindex.json",
-#'                              package = "MODIStsp")
+#'                              package = "MODIStsp.mod")
 #'  MODIStsp_addindex(
 #'    opts_jsfile = opts_jsfile,
 #'    gui = FALSE,
@@ -41,7 +41,7 @@ MODIStsp_resetindexes <- function() {
 
   indexes_file <- system.file("ExtData",
                               "MODIStsp_indexes.json",
-                              package = "MODIStsp")
+                              package = "MODIStsp.mod")
 
   # Re-save the json file
   jsonlite::write_json("",

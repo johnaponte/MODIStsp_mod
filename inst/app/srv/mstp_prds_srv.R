@@ -83,7 +83,7 @@ observe({
   indlabels <- prod_opt_list[[curprod]][[input$selver]]$indexes_fullnames
   indexes_file <- system.file("ExtData",
                               "MODIStsp_indexes.json",
-                              package = "MODIStsp")
+                              package = "MODIStsp.mod")
 
   if (file.exists(indexes_file)) {
     custom_indexes <- jsonlite::read_json(indexes_file)

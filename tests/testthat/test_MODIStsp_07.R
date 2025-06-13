@@ -12,7 +12,7 @@ test_that(
       test = 7,
       spatmeth = "file",
       spafile = system.file("testdata/spatial_file.shp",
-                                      package = "MODIStsp")
+                                      package = "MODIStsp.mod")
     )
     outpath <- file.path(
       tempdir(), "MODIStsp/spatial_file/",
@@ -22,7 +22,7 @@ test_that(
     ext_mstpout <- sf::st_bbox(outrast)
 
     ext_spin <-  sf::st_bbox(sf::st_read(
-      system.file("testdata/spatial_file.shp", package = "MODIStsp"), quiet = TRUE))
+      system.file("testdata/spatial_file.shp", package = "MODIStsp.mod"), quiet = TRUE))
     # Is input and output extent equal (allow for difference equal to raster
     # resolution to account for the fact that to include boundaries of the
     # polygon a padding of one pixel is always made)

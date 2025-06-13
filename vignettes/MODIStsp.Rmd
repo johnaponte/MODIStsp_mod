@@ -225,7 +225,7 @@ library(MODIStsp)
 # downloads and processed 3 MOD13A2 images over the Como Lake (Lombardy, Italy)
 # and retrieves NDVI and EVI data, plus the Usefulness Index Quality Indicator.
 
-opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
+opts_file <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
 
 # --> Launch the processing
 MODIStsp(gui = FALSE, opts_file = opts_file, verbose = FALSE, parallel = FALSE)
@@ -245,8 +245,8 @@ MODIStsp options files by using the GUI, and then loop over them like this:
 
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 
-opts_files <- c(system.file("testdata/test_MOD13A2.json", package = "MODIStsp"), 
-                system.file("testdata/test_MOD10A2.json", package = "MODIStsp"))
+opts_files <- c(system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod"), 
+                system.file("testdata/test_MOD10A2.json", package = "MODIStsp.mod"))
 
 for (opts_file in opts_files) {
   MODIStsp(gui = FALSE, opts_file = opts_file, verbose = FALSE, parallel = FALSE)
@@ -276,8 +276,8 @@ Specifying the `spafile` parameter while setting the `spatmeth` parameter to `"f
 # and specifying the extent from a spatial file allows to re-use the same
 # processing settings to perform download and reprocessing on a different area
 library(MODIStsp) 
-opts_file    <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp")
-spatial_file <- system.file("testdata/lakeshapes/garda_lake.shp", package = "MODIStsp")
+opts_file    <- system.file("testdata/test_MOD13A2.json", package = "MODIStsp.mod")
+spatial_file <- system.file("testdata/lakeshapes/garda_lake.shp", package = "MODIStsp.mod")
 MODIStsp(
   gui = FALSE, 
   opts_file = opts_file,
@@ -288,7 +288,7 @@ MODIStsp(
 )
 
 # --> Create a character array containing a list of shapefiles (or other spatial files)
-extent_list <- list.files(system.file("testdata/lakeshapes/", package = "MODIStsp"), full.names = TRUE, "\\.shp$")  
+extent_list <- list.files(system.file("testdata/lakeshapes/", package = "MODIStsp.mod"), full.names = TRUE, "\\.shp$")  
 
 extent_list
 
