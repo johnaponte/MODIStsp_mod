@@ -3,7 +3,7 @@
 jscode <- "shinyjs.closeWindow = function() { window.close(); }"
 
 # add path for images
-shiny::addResourcePath( 'www', system.file('app/www', package = 'MODIStsp') )
+shiny::addResourcePath( 'www', system.file('app/www', package = 'MODIStsp.mod') )
 
 MSTP_ui <- shinydashboard::dashboardPage(
   #   ____________________________________________________________________________
